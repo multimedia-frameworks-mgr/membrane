@@ -25,6 +25,7 @@ defmodule Mgr.MixProject do
       {:membrane_core, "~> 0.5.0"},
       {:membrane_element_ffmpeg_h264, "~> 0.2.0"},
       {:membrane_element_file, "~> 0.3.0"},
+      {:membrane_element_sdl, "~> 0.3.0"},
       {:unifex, github: "membraneframework/unifex", branch: "cpp_support", override: true},
       {:bundlex, github: "membraneframework/bundlex", branch: "cpp_support", override: true}
     ]
