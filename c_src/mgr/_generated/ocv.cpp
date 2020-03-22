@@ -115,7 +115,7 @@ exit_export_detect:
 static ErlNifFunc nif_funcs[] =
 {
   {"unifex_init", 0, export_init, 0},
-  {"unifex_detect", 4, export_detect, 0}
+  {"unifex_detect", 4, export_detect, ERL_NIF_DIRTY_JOB_CPU_BOUND}
 };
 
 ERL_NIF_INIT(Elixir.Mgr.OCV.Native.Nif, nif_funcs, unifex_load_nif, NULL, NULL, NULL)
