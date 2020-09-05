@@ -7,7 +7,7 @@ IO.inspect(mode)
 
 if mode == :dist do
   unless Node.alive?() do
-    {:ok, _pid} = Node.start(:"master@MacBook-Pro-MatHek", :shortnames)
+    {:ok, _pid} = Node.start(:master, :shortnames)
   end
 
   {:ok, _pid} = Assigner.start_link(name: Assigner)
@@ -17,7 +17,7 @@ Mgr.Pipeline.run(mode: mode)
 
 Process.sleep(2000)
 
-["../ryj_270p.h264", "../ryj2_270p.h264"]
+["../ryj/ryj_270p.h264", "../ryj/ryj2_270p.h264"]
 |> Stream.cycle()
 |> Enum.take(clients)
 |> Enum.each(fn src ->

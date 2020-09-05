@@ -10,15 +10,12 @@ defmodule Mgr.Pipeline do
 
   @impl true
   def handle_init(opts) do
-    # {children, links} =
-    #   ["../ryj_270p.h264", "../ryj2_270p.h264"] |> Enum.map(&mk_input/1) |> Enum.unzip()
-
     children = [
       udp: %Membrane.Element.UDP.Source{
         local_port_no: 5000,
         recv_buffer_size: 100_000
       },
-      rtp: %Membrane.Bin.RTP.Receiver{fmt_mapping: %{96 => "H264"}},
+      rtp: %Membrane.RTP.Session.ReceiveBin{fmt_mapping: %{96 => :H264}},
       chooser: Mgr.RyjChooser,
       player: Membrane.Element.SDL.Player
     ]
@@ -28,7 +25,8 @@ defmodule Mgr.Pipeline do
     {{:ok, %ParentSpec{children: children, links: links}}, Map.new(opts)}
   end
 
-  def handle_notification({:new_rtp_stream, ssrc, "H264"}, :rtp, state) do
+  @impl true
+  def handle_notification({:new_rtp_stream, ssrc, :H264}, :rtp, state) do
     IO.inspect("stream")
     ref = make_ref()
 
@@ -62,10 +60,12 @@ defmodule Mgr.Pipeline do
     {{:ok, spec: %ParentSpec{children: children, links: links}}, state}
   end
 
+  @impl true
   def handle_notification({:new_rtp_stream, _ssrc, format}, :rtp, _state) do
     raise "Unsupported format #{inspect(format)}"
   end
 
+  @impl true
   def handle_notification(_notification, _from, state) do
     {:ok, state}
   end
