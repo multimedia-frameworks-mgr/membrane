@@ -17,10 +17,11 @@ defmodule Mgr.Pipeline do
       },
       rtp: %Membrane.RTP.Session.ReceiveBin{fmt_mapping: %{96 => :H264}},
       chooser: Mgr.RyjChooser,
+      frame_length_counter: Mgr.FrameLengthCounter,
       player: Membrane.Element.SDL.Player
     ]
 
-    links = [link(:udp) |> to(:rtp), link(:chooser) |> to(:player)]
+    links = [link(:udp) |> to(:rtp), link(:chooser) |> to(:frame_length_counter) |> to(:player)]
 
     {{:ok, %ParentSpec{children: children, links: links}}, Map.new(opts)}
   end
