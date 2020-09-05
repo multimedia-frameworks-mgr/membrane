@@ -20,6 +20,7 @@ defmodule Mgr.OCV.Distributed.Assigner do
 
   @impl true
   def handle_call({:register, detector}, _from, detectors) do
+    IO.inspect(:register)
     Process.monitor(detector)
     {:reply, :ok, Qex.push_front(detectors, detector)}
   end

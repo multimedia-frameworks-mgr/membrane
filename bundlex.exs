@@ -13,7 +13,7 @@ defmodule Mgr.BundlexProject do
         deps: [unifex: :unifex],
         sources: ["_generated/ocv.cpp", "ocv.cpp"],
         pkg_configs: ["opencv4"],
-        language: "cpp"
+        language: :cpp
       ]
     ]
   end
