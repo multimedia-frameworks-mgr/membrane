@@ -32,6 +32,6 @@ Process.sleep(2000)
 
     :os.cmd(
       'gst-launch-1.0 filesrc location=#{src} ! h264parse ! rtph264pay pt=96 ! udpsink host=127.0.0.1 port=5000'
-    )
+    ) |> IO.inspect()
   end)
 end)

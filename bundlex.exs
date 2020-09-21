@@ -3,17 +3,18 @@ defmodule Mgr.BundlexProject do
 
   def project() do
     [
-      nifs: nifs()
+      natives: natives()
     ]
   end
 
-  def nifs() do
+  def natives() do
     [
       ocv: [
-        deps: [unifex: :unifex],
-        sources: ["_generated/ocv.cpp", "ocv.cpp"],
+        interface: :nif,
+        sources: ["ocv.cpp"],
         pkg_configs: ["opencv4"],
-        language: :cpp
+        language: :cpp,
+        preprocessor: Unifex
       ]
     ]
   end

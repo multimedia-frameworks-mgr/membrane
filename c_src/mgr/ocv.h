@@ -6,8 +6,6 @@
 
 typedef struct _ocv_state {
   cv::CascadeClassifier *classifier;
-} UnifexNifState;
-
-typedef UnifexNifState State;
+} State;
 
 #include "_generated/ocv.h"

@@ -23,15 +23,16 @@ defmodule Mgr.MixProject do
   defp deps do
     [
       {:membrane_core, "~> 0.5.0"},
-      {:membrane_element_ffmpeg_h264, "~> 0.2.0"},
+      {:membrane_element_ffmpeg_h264, "~> 0.4.0"},
       {:membrane_element_file, "~> 0.3.0"},
-      {:membrane_element_sdl, "~> 0.3.0"},
+      {:membrane_element_sdl, git: "git@github.com:membraneframework/membrane-element-sdl.git", branch: "unifex"},
       {:membrane_element_fake, "> 0.0.0"},
       {:membrane_rtp_plugin, "~> 0.4.0-alpha"},
       {:membrane_rtp_h264_plugin, "~> 0.3.0-alpha"},
       {:membrane_element_udp, "> 0.0.0"},
-      {:unifex, github: "membraneframework/unifex", branch: "cpp_support", override: true},
-      {:bundlex, github: "membraneframework/bundlex", branch: "cpp_support", override: true}
+      {:unifex, "~> 0.3.0"},
+      {:bundlex, "~> 0.4.0"},
+      {:shmex, "~> 0.3.0"}
     ]
   end
 end
