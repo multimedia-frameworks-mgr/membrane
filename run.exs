@@ -17,7 +17,7 @@ Mgr.Pipeline.run(mode: mode)
 
 Process.sleep(2000)
 
-["../ryj/ryj_270p.h264", "../ryj/ryj2_270p.h264"]
+["../ryj/ryj_240.h264", "../ryj/ryj2_240.h264"]
 |> Stream.cycle()
 |> Enum.take(clients)
 |> Enum.each(fn src ->
@@ -33,5 +33,6 @@ Process.sleep(2000)
     :os.cmd(
       'gst-launch-1.0 filesrc location=#{src} ! h264parse ! rtph264pay pt=96 ! udpsink host=127.0.0.1 port=5000'
     ) |> IO.inspect()
+    System.halt(0)
   end)
 end)
